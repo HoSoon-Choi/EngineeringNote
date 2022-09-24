@@ -27,8 +27,8 @@ def crossWlf(crossWlfValueList, meltTemperature):
     A2 = A2 + D3*P
     Tg = D2 + D3*P
     pexp = 1 - n
-    Tmax = float(meltTemperature) + 30 + 273.15
-    Tmin = float(meltTemperature) - 30 + 273.15
+    Tmax = float(meltTemperature) + 273.15
+    Tmin = float(meltTemperature) + 273.15
     incT = 10
     incGamma = 10
     T = np.arange(Tmin, Tmax + incT, incT)
@@ -51,10 +51,10 @@ def crossWlf(crossWlfValueList, meltTemperature):
     print('OK')
     return
 
-# valueList=[0.2354, 72350, 2.21489e12, 378.15, 0, 28.79, 51.6]
-# meltTemp=230
+valueList=[0.2354, 72350, 2.21489e12, 378.15, 0, 28.79, 51.6]
+meltTemp=230
 # valueList=[0.2718, 26260, 4.44489e+14, 263.15, 0, 32.71, 51.6]
 # meltTemp=240
-valueList=[0.3309, 139000, 9.97264e+18, 323.15, 0, 46.56, 51.6]
-meltTemp=290
+# valueList=[0.3309, 139000, 9.97264e+18, 323.15, 0, 46.56, 51.6]
+# meltTemp=290
 crossWlf(valueList, meltTemp)

@@ -7,9 +7,9 @@ def squareGate(thickness, width, flowRate):
 
 meltTemperature = 230+273.15
 
-thickness = np.linspace(0.5, 2, 100)
+thickness = np.linspace(1.5, 2, 100)
 plt.figure('Shear rate for gate thickness change',figsize=(10, 6))
-plt.plot(thickness, squareGate(thickness, 10, 200e3), marker='')
+plt.plot(thickness, squareGate(thickness, 12, 200e3), marker='')
 plt.xlabel('Gate thickness(mm)')
 plt.ylabel('Shear rate(1/s)')
 plt.title('Shear rate for gate thickness change')

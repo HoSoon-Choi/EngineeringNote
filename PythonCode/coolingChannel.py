@@ -14,18 +14,19 @@ iViscosity = 3
 iConductivity = 4
 iDViscosity = 5
 
-thickness = 2.5
+thickness = 2
 density = 1.1015e-6
 thermalConductivity = 0.00024
 heatCapacity = 1900
 meltTemperature = 300.0
 wallTemperature = 100.0
-channelWallTemperature = 35.0
+coolantTemperature = 35.0
+# channelWallTemperature = 35.0
 ejectionTemperature = 127
 thermalConductance = 0.03
-moldThermalConductivity = 0.041
-channelDiameter = 10.0
-lengthToChannelCenter = 25.0
+moldThermalConductivity = 0.03
+channelDiameter = 8.0
+lengthToChannelCenter = 15.0
 flowRateCoolant = 5.0
 waterTemperatureDelta = 5.0
 
@@ -119,7 +120,8 @@ def calculate():
     km = moldThermalConductivity
     dia = channelDiameter
     lToCenter = lengthToChannelCenter
-    Tc = channelWallTemperature
+    Tc = coolantTemperature
+    # Tc = channelWallTemperature
     qcoolant = flowRateCoolant
     Tdelta = waterTemperatureDelta
     htc, heatCapacityWater, densityWater = HTC(Tc, dia, qcoolant)
