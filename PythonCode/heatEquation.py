@@ -18,22 +18,24 @@ def temperature(t):
         Temp0=Temp
     return Temp
 
+# plt.style.use('ggplot')
 plt.figure('Heat Equation', figsize=(10, 6))
 
-rho=1
-k=0.00018
-cp=2.4
-# alpha=k/(cp*rho/1000)
-alpha=0.09
-thickness=0.1
-Tm=240
-Tw=40
+rho=1.1015
+k=0.00024
+cp=1.9
+alpha=k/(cp*rho/1000)
+thickness=2.5
+Tm=300
+Tw=100
+# Te=88
 
 Ti=Tm-Tw
-timeMax = 0.02
-numTime = 11
+timeMax = 12.392
+numTime = 10
+# time = np.arange(0, timeMax + 1.5, 1.5)
 time = np.linspace(0, timeMax, numTime)
-numX = 3000
+numX = 300
 m=300
 
 

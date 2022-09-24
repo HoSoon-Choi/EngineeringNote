@@ -7,10 +7,10 @@ def circularGate(diameter, flowRate):
 
 meltTemperature = 230+273.15
 
-diameter1 = np.linspace(4, 10, 100)
+diameter1 = np.linspace(2, 6, 100)
 
 plt.figure('Shear rate for gate diameter change',figsize=(10, 6))
-plt.plot(diameter1, circularGate(diameter1, 300e3), marker='')
+plt.plot(diameter1, circularGate(diameter1, 200e3), marker='')
 plt.xlabel('Gate diameter(mm)')
 plt.ylabel('Shear rate(1/s)')
 plt.title('Shear rate for gate diameter change')

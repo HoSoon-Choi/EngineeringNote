@@ -2,41 +2,24 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-# clearance = 0.2
-# thermalConductivity = 0.00018
-# heatCapacity = 2400
-# density = 0.96971e-6
-# MeltTemperature = 230.0
-# WallTemperature = 50.0
-# TransitionTemperature = 97.26
-# deltaP = 30e6
-# timeStepSize = 0.0001
-# numFourier = 50
-# n = 0.2354
-# Tau = 72350
-# D1 = 2.21489e12
-# D2 = 378.15
-# D3 = 0
-# A1 = 28.79
-# A2const = 51.6
-
 clearance = 0.1
-thermalConductivity = 0.00015
-heatCapacity = 3100
-density = 0.78392e-6
-MeltTemperature = 240.0
+thermalConductivity = 0.00018
+heatCapacity = 1800
+density = 0.96971e-6
+MeltTemperature = 230.0
 WallTemperature = 50.0
-TransitionTemperature = 149.63
-deltaP = 30e6
+TransitionTemperature = 97.26
+deltaP = 300e6
 timeStepSize = 0.0001
 numFourier = 50
-n = 0.2718
-Tau = 26260
-D1 = 4.44489e+14
-D2 = 263.15
+n = 0.2354
+Tau = 72350
+D1 = 2.21489e12
+D2 = 378.15
 D3 = 0
-A1 = 32.71
+A1 = 28.79
 A2const = 51.6
+
 
 def frozen(transitionTemperature, wallTemperature, timeList, clearance, alpha, Ti, numFourier):
     frozenLayer = []
@@ -93,7 +76,6 @@ def plotFlash(x, y, labelY, title):
     plt.tight_layout()
     plt.show()
 
-
 def calculate():
     def Mu(T, gamma):
         Mu0=D1*np.exp(-(A1*(T-Tg))/(A2+(T-Tg)))
@@ -110,20 +92,15 @@ def calculate():
     Tg=D2+D3*P
     pexp=1-n
     alpha = thermalConductivity / (density * heatCapacity)
-    
     meltTemperature = meltTemperature + 273.15
     wallTemperature = wallTemperature + 273.15
     Ti = meltTemperature - wallTemperature
     transitionTemperature = transitionTemperature + 273.15
 
     timeToFrozen = clearance ** 2 / (np.pi ** 2 * alpha) * np.log(4*(meltTemperature - wallTemperature)/(np.pi * (transitionTemperature - wallTemperature)))
-
-    alphaModified = alpha * Ti / (meltTemperature - transitionTemperature)
-    print(alphaModified, timeToFrozen)
-
     numTime = int(timeToFrozen / timeStepSize)
     timeList = np.linspace(0, timeToFrozen, numTime)
-    
+
     frozenLayerList = frozen(transitionTemperature, wallTemperature, timeList, clearance, alpha, Ti, numFourier)
     frozenLayerList = np.array(frozenLayerList)
     meltLayerList = clearance / 2 - frozenLayerList
@@ -155,7 +132,6 @@ def calculate():
             else:
                 gamma_low = gamma
             number += 1
-        print(time, gamma, MuCrossWlf, uAvg)
         flashLength = flashLength + uAvg * dt
         flashLengthList.append(flashLength)
         uAvgList.append(uAvg)
